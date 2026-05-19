@@ -1,0 +1,4 @@
+dataset,data_characteristic,total_inversions,bubble_passes,bubble_swaps,quick_sort_pivot_used,pivot_id,pivot_rank,first_partition_left,first_partition_right,pivot_quality
+Dataset A,Nearly sorted,17,2,17,Last element,L1000,1000,999,0,Highly unbalanced
+Dataset B,Random order,250696,964,250696,Last element,L0475,475,474,525,Relatively balanced
+Dataset C,Scores sorted and IDs shuffled within tied-score groups,5995,25,5995,Last element,L0989,989,988,11,Highly unbalanced

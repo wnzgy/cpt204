@@ -1,0 +1,7 @@
+dataset,list_type,algorithm,row_count,avg_runtime_ns,avg_runtime_ms
+Dataset A,ArrayList,Quick Sort,1000,2104566,2.104566
+Dataset A,LinkedList,Quick Sort,1000,440006633,440.006633
+Dataset B,ArrayList,Quick Sort,1000,131866,0.131866
+Dataset B,LinkedList,Quick Sort,1000,7358966,7.358966
+Dataset C,ArrayList,Quick Sort,1000,1297233,1.297233
+Dataset C,LinkedList,Quick Sort,1000,60907866,60.907866

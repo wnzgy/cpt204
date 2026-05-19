@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第 1 页" id="35DoZ8IAEzzcWEbi44eq">
+    <mxGraphModel dx="1115" dy="741" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4K0yVxPw3IAilX27msQZ-4" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="4K0yVxPw3IAilX27msQZ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Start" vertex="1">
+          <mxGeometry height="30" width="90" x="370" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="End" vertex="1">
+          <mxGeometry height="30" width="90" x="370" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-7" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="4K0yVxPw3IAilX27msQZ-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="candidates_A.csv, candidates_B.csv, candidates_C.csv" vertex="1">
+          <mxGeometry height="60" width="120" x="355" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Read" vertex="1">
+          <mxGeometry height="30" width="60" x="410" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-10" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="4K0yVxPw3IAilX27msQZ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="CandidateLocation objects" vertex="1">
+          <mxGeometry height="50" width="120" x="355" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Create&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="60" x="410" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-13" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Bubble Sort,&amp;nbsp;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Quick Sort,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Merge Sort&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="355" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Run" vertex="1">
+          <mxGeometry height="30" width="60" x="410" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-15" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-12" parent="1" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" value="Measure execution time for each sorting algorithm" vertex="1">
+          <mxGeometry height="60" width="170" x="330" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-17" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-14" parent="1" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" value="Select Top 10 candidate locations from each dataset" vertex="1">
+          <mxGeometry height="60" width="120" x="355" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-20" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-16" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="paths.csv" vertex="1">
+          <mxGeometry height="40" width="105" x="362.5" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Read" vertex="1">
+          <mxGeometry height="30" width="60" x="407.5" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-23" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-19" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="WeightedGraph" vertex="1">
+          <mxGeometry height="40" width="105" x="362.5" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Build" vertex="1">
+          <mxGeometry height="30" width="60" x="407.5" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-25" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-24" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-22" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="Run Dijkstra algorithm for 4 required path queries" vertex="1">
+          <mxGeometry height="50" width="140" x="345" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-29" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-28" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-24" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="Generate PathResult and GraphQueryResult" vertex="1">
+          <mxGeometry height="50" width="140" x="345" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-31" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="4K0yVxPw3IAilX27msQZ-30" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-28" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="Write sorting result CSV files" vertex="1">
+          <mxGeometry height="50" width="95" x="367.5" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-32" edge="1" parent="1" source="4K0yVxPw3IAilX27msQZ-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="4K0yVxPw3IAilX27msQZ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4K0yVxPw3IAilX27msQZ-30" parent="1" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" value="Write graph query result CSV files" vertex="1">
+          <mxGeometry height="50" width="102.5" x="363.75" y="940" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

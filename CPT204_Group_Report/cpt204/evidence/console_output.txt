@@ -1,0 +1,84 @@
+﻿========== Task A: Sorting Benchmark ==========
+Dataset A:
+  profile -> totalRows=1000, uniqueScores=1000, tieScoreGroups=0, alreadySortedByRule=false
+  Bubble Sort avg = 147940 ns (0.147940 ms)
+  Quick Sort  avg = 5292900 ns (5.292900 ms)
+  Merge Sort  avg = 255840 ns (0.255840 ms)
+
+Dataset B:
+  profile -> totalRows=1000, uniqueScores=1000, tieScoreGroups=0, alreadySortedByRule=false
+  Bubble Sort avg = 4871140 ns (4.871140 ms)
+  Quick Sort  avg = 89640 ns (0.089640 ms)
+  Merge Sort  avg = 1590300 ns (1.590300 ms)
+
+Dataset C:
+  profile -> totalRows=1000, uniqueScores=41, tieScoreGroups=41, alreadySortedByRule=false
+  Bubble Sort avg = 817320 ns (0.817320 ms)
+  Quick Sort  avg = 891480 ns (0.891480 ms)
+  Merge Sort  avg = 1904140 ns (1.904140 ms)
+
+========== Top 10 Selected Locations ==========
+Dataset A:
+  #01 L0001 (score=10000)
+  #02 L0002 (score=9999)
+  #03 L0003 (score=9998)
+  #04 L0004 (score=9997)
+  #05 L0005 (score=9996)
+  #06 L0006 (score=9995)
+  #07 L0007 (score=9994)
+  #08 L0008 (score=9993)
+  #09 L0009 (score=9992)
+  #10 L0010 (score=9991)
+
+Dataset B:
+  #01 L0101 (score=10000)
+  #02 L0102 (score=9999)
+  #03 L0103 (score=9998)
+  #04 L0104 (score=9997)
+  #05 L0105 (score=9996)
+  #06 L0106 (score=9995)
+  #07 L0107 (score=9994)
+  #08 L0108 (score=9993)
+  #09 L0109 (score=9992)
+  #10 L0110 (score=9991)
+
+Dataset C:
+  #01 L0201 (score=5000)
+  #02 L0202 (score=5000)
+  #03 L0203 (score=5000)
+  #04 L0204 (score=5000)
+  #05 L0205 (score=5000)
+  #06 L0206 (score=5000)
+  #07 L0207 (score=5000)
+  #08 L0208 (score=5000)
+  #09 L0209 (score=5000)
+  #10 L0210 (score=5000)
+
+========== Task B: Graph Queries ==========
+Graph summary: nodes=1000, undirectedEdges=2600
+Case 1:
+  start=L0001, destination=L0001
+  waypoints=NONE
+  shortestPath=L0001
+  totalCost=0
+
+Case 2:
+  start=L0001, destination=L0010
+  waypoints=NONE
+  shortestPath=L0001 -> L0340 -> L0339 -> L0895 -> L0894 -> L0082 -> L0284 -> L0010
+  totalCost=27
+
+Case 3:
+  start=L0001, destination=L0101
+  waypoints=L0105
+  shortestPath=L0001 -> L0340 -> L0339 -> L0247 -> L0017 -> L0128 -> L0107 -> L0106 -> L0105 -> L0106 -> L0107 -> L0108 -> L0827 -> L0996 -> L0101
+  totalCost=39
+
+Case 4:
+  start=L0001, destination=L0201
+  waypoints=L0105 -> L0205
+  shortestPath=L0001 -> L0340 -> L0339 -> L0247 -> L0017 -> L0128 -> L0107 -> L0106 -> L0105 -> L0106 -> L0107 -> L0108 -> L0243 -> L0242 -> L0241 -> L0385 -> L0205 -> L0201
+  totalCost=48
+
+
+All experiment outputs have been written to: C:\Users\87341\Desktop\ics group cw\cpt204\cpt204\outputs

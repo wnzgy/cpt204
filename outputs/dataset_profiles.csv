@@ -1,0 +1,4 @@
+dataset,total_rows,unique_scores,tie_score_groups,already_sorted_by_rule
+Dataset A,1000,1000,0,false
+Dataset B,1000,1000,0,false
+Dataset C,1000,41,41,false

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CPT204 小组项目 — 已完成 / 待办 Checklist</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --done: #3fb950;
+      --todo: #d29922;
+      --border: #30363d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2 .badge-done { color: var(--done); font-size: 0.85rem; font-weight: 500; }
+    h2 .badge-todo { color: var(--todo); font-size: 0.85rem; font-weight: 500; }
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    li { margin: 0.4rem 0; }
+    li code, p code {
+      font-size: 0.88em;
+      background: #21262d;
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    .path { color: #79c0ff; word-break: break-all; }
+    footer {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>CPT204 小组项目 — 已完成 / 待办 Checklist</h1>
+  <p class="meta">生成位置：<span class="path">cpt204/docs/project_status_checklist.html</span> · 请与任务书（LMO）最终要求对照使用</p>
+
+  <section>
+    <h2>技术实现（代码与数据）<span class="badge-done">已完成</span></h2>
+    <ul>
+      <li>Task A：Bubble / Quick / Merge 三种排序，统一规则（分数降序、<code>location_id</code> 升序），三数据集计时与 Top 10</li>
+      <li>Task B：<code>paths.csv</code> 无向加权图、Dijkstra 正式结果、Bidirectional Dijkstra/A* 对比、任务书规定的 4 个 case 及路径与代价输出</li>
+      <li>Task C：包分层、<code>SortStrategy</code> 多态、主程序串联 A→B</li>
+      <li>运行方式：IDE 直接运行 <code>cpt204.app.UrbanInspectionApp.main</code></li>
+      <li>实验输出 CSV：<code>outputs/sorting_benchmark.csv</code>、<code>outputs/selected_locations.csv</code>、<code>outputs/graph_cases.csv</code>、<code>outputs/dataset_profiles.csv</code>、<code>outputs/dataset_characteristics_core.csv</code>、<code>outputs/graph_algorithm_comparison.csv</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>仓库内文档与证据（非 Word 终稿）<span class="badge-done">已完成</span></h2>
+    <ul>
+      <li>第 1–3 章草稿：<code>docs/report_ch1_ch3_draft.md</code></li>
+      <li>第 4 章反思草稿：<code>docs/report_ch4_reflection_draft.md</code>（需替换占位符为真实小组经历）</li>
+      <li>第 5 章源码全文：<code>docs/chapter5_program_code.md</code></li>
+      <li>第 6 章附录指引：<code>docs/chapter6_appendix.md</code></li>
+      <li>第 7 章贡献表模板：<code>docs/chapter7_contribution_form.md</code></li>
+      <li>Word 格式核对：<code>docs/word_format_checklist.md</code></li>
+      <li>报告拼装顺序：<code>docs/report_assembly_guide.md</code></li>
+      <li>控制台证据：<code>evidence/console_output.txt</code></li>
+      <li>一致性说明：<code>evidence/verification_report.md</code></li>
+      <li>证据快照（Markdown，可再导出 PNG）：<code>evidence/screenshots/01_console_output.md</code> ~ <code>04_graph_cases.md</code></li>
+      <li>需求对照与收尾：<code>requirements/group_project_requirements_checklist.md</code>、<code>requirements/pre_submit_check_report.md</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>演示材料（文稿，非 pptx/mp4）<span class="badge-done">已完成</span></h2>
+    <ul>
+      <li>PPT 页内容稿：<code>presentation/CPT204_Project_Presentation.md</code></li>
+      <li>8 分钟双人讲稿：<code>presentation/speaker_notes.md</code></li>
+      <li>录制检查单：<code>presentation/video_recording_checklist.md</code></li>
+      <li>建 PPT 步骤：<code>presentation/ppt_build_steps.md</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>提交前仍需你们手动完成<span class="badge-todo">待办</span></h2>
+    <ul>
+      <li>用 LMO 封面模板填写封面页</li>
+      <li>将 <code>docs/</code> 中各章节内容合并为最终 <strong>report.docx</strong>，并应用 Calibri 12、1.5 倍行距、常规页边距</li>
+      <li>替换学号、真实分工、AI 工具引用等所有占位符；第 4 章写成你们自己的具体经历</li>
+      <li>确认正文页数符合任务书（不含封面及第 5–7 章等规则以任务书为准）</li>
+      <li>按 <code>presentation/</code> 文稿在 PowerPoint 中建 <strong>presentation.pptx</strong></li>
+      <li>按任务书录制 <strong>video.mp4</strong>：两人出镜、本人原声 narrate、总长 ≤ 8 分钟</li>
+      <li>打包全部 Java 源码等为 <strong>code.zip</strong>（以 LMO 说明为准）</li>
+      <li>若评分要求「截图必须为 PNG」，将 <code>evidence/screenshots/*.md</code> 内容截图为 PNG 插入报告附录</li>
+      <li>上传前用 <code>requirements/pre_submit_check_report.md</code> 再勾一遍四件套</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>可选代码改进（计划中的增强项）<span class="badge-todo">可选</span></h2>
+    <ul>
+      <li>比较器用 <code>Integer.compare</code> 避免分数相减潜在溢出</li>
+      <li>取 A10/B5/C5 前校验列表长度 ≥ 10，避免小数据集崩溃</li>
+      <li>在报告中解释 Dataset A 上 Quick Sort 偏慢与 pivot 策略、输入分布的关系</li>
+    </ul>
+  </section>
+
+  <footer>
+    说明：本清单反映当前 <code>cpt204</code> 仓库状态；最终是否合格以课程 Task Sheet 与 LMO 提交说明为准。
+  </footer>
+</body>
+</html>
+
