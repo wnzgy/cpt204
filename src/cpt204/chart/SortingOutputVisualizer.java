@@ -1,4 +1,4 @@
-package cpt204.visualizer;
+package cpt204.chart;
 
 import cpt204.sort.DataStructureComparisonResult;
 import cpt204.sort.DatasetCharacteristicsResult;

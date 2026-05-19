@@ -20,7 +20,6 @@ public class QuickSortStrategy implements SortStrategy {
             return;
         }
 
-        // Put the pivot in its final position, then sort the two sides.
         int pivotIndex = partition(data, comparator, low, high);
         quickSort(data, comparator, low, pivotIndex - 1);
         quickSort(data, comparator, pivotIndex + 1, high);
@@ -30,7 +29,6 @@ public class QuickSortStrategy implements SortStrategy {
         T pivot = data.get(high);
         int i = low - 1;
 
-        // Values smaller than or equal to the pivot are moved to the left.
         for (int j = low; j < high; j++) {
             if (comparator.compare(data.get(j), pivot) <= 0) {
                 i++;

@@ -24,7 +24,6 @@ public class MergeSortStrategy implements SortStrategy {
             return;
         }
 
-        // Split the list into two halves and sort them separately.
         int mid = left + (right - left) / 2;
         mergeSort(data, buffer, comparator, left, mid);
         mergeSort(data, buffer, comparator, mid + 1, right);
@@ -32,7 +31,6 @@ public class MergeSortStrategy implements SortStrategy {
     }
 
     private <T> void merge(List<T> data, List<T> buffer, Comparator<T> comparator, int left, int mid, int right) {
-        // Copy the current range so that merging will not overwrite unread values.
         for (int i = left; i <= right; i++) {
             buffer.set(i, data.get(i));
         }
@@ -42,7 +40,6 @@ public class MergeSortStrategy implements SortStrategy {
         int k = left;
 
         while (i <= mid && j <= right) {
-            // Always take the smaller ranked item from the two sorted halves.
             if (comparator.compare(buffer.get(i), buffer.get(j)) <= 0) {
                 data.set(k++, buffer.get(i++));
             } else {

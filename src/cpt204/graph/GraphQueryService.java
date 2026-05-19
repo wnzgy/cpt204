@@ -19,7 +19,6 @@ public class GraphQueryService {
     ) {
         List<String> sequence = new ArrayList<>();
 
-        // Convert a waypoint query into several normal shortest-path queries.
         sequence.add(start);
         sequence.addAll(orderedWaypoints);
         sequence.add(destination);
@@ -46,7 +45,6 @@ public class GraphQueryService {
             if (i == 0) {
                 mergedPath.addAll(segment.getPath());
             } else {
-                // Skip the first node of later segments to avoid duplicated waypoints.
                 mergedPath.addAll(segment.getPath().subList(1, segment.getPath().size()));
             }
         }

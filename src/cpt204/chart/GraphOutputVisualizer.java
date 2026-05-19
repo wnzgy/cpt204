@@ -1,4 +1,4 @@
-package cpt204.visualizer;
+package cpt204.chart;
 
 import cpt204.graph.GraphAlgorithmComparisonResult;
 import cpt204.graph.GraphQueryResult;
@@ -18,7 +18,6 @@ import java.util.List;
 
 public class GraphOutputVisualizer {
     public void writePathSummary(Path outputFile, List<GraphQueryResult> graphResults) throws IOException {
-        // Draw a report-ready image for the four required Task B cases.
         int width = 1500;
         int rowHeight = 150;
         int height = 110 + graphResults.size() * rowHeight;
@@ -42,7 +41,6 @@ public class GraphOutputVisualizer {
     }
 
     public void writeAlgorithmComparison(Path outputFile, List<GraphAlgorithmComparisonResult> results) throws IOException {
-        // Draw a simple table and bar chart for the three shortest-path algorithms.
         int width = 1500;
         int height = 720;
 

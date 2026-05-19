@@ -1,19 +1,2 @@
-# IDE
-.idea/
-*.iml
-
-# Compiled classes
 bin/
-**/bin/
-
-# Timestamped experiment runs (regenerate locally)
-outputs/run_*/
-
-# Temp / extraction artifacts
-temp_previous_year/
-outputs/previous_year_extracted/
-outputs/task_sheet_extracted.txt
-
-# Duplicate code copy inside report bundle (use repo-root src/)
-CPT204_Group_Report/cpt204/bin/
-CPT204_Group_Report/cpt204/src/
+outputs/

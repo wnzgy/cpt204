@@ -45,7 +45,6 @@ public class DatasetCharacteristicsService {
         int passes = 0;
         long swaps = 0L;
 
-        // This follows BubbleSortStrategy so the analysis matches the real code.
         for (int i = 0; i < data.size() - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < data.size() - 1 - i; j++) {
@@ -68,7 +67,6 @@ public class DatasetCharacteristicsService {
         int leftCount = 0;
         int rightCount = 0;
 
-        // QuickSortStrategy uses the last element as pivot.
         for (int i = 0; i < candidates.size() - 1; i++) {
             int order = CandidateLocation.RANKING_RULE.compare(candidates.get(i), pivot);
             if (order <= 0) {

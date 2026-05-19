@@ -1,10 +1,10 @@
 dataset,algorithm,avg_runtime_ns,avg_runtime_ms
-Dataset A,Bubble Sort,159500,0.159500
-Dataset A,Quick Sort,5527300,5.527300
-Dataset A,Merge Sort,306366,0.306366
-Dataset B,Bubble Sort,8592833,8.592833
-Dataset B,Quick Sort,569533,0.569533
-Dataset B,Merge Sort,1872433,1.872433
-Dataset C,Bubble Sort,837966,0.837966
-Dataset C,Quick Sort,1040166,1.040166
-Dataset C,Merge Sort,1447700,1.447700
+Dataset A,Bubble Sort,316780,0.316780
+Dataset A,Quick Sort,9320580,9.320580
+Dataset A,Merge Sort,537080,0.537080
+Dataset B,Bubble Sort,7445440,7.445440
+Dataset B,Quick Sort,384120,0.384120
+Dataset B,Merge Sort,2708580,2.708580
+Dataset C,Bubble Sort,1437800,1.437800
+Dataset C,Quick Sort,1413380,1.413380
+Dataset C,Merge Sort,2724840,2.724840

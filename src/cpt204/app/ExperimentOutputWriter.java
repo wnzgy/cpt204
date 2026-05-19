@@ -45,7 +45,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("dataset,algorithm,avg_runtime_ns,avg_runtime_ms\n");
 
-        // Save the average running time of each sorting algorithm.
         for (DatasetSortingResult result : sortingResults) {
             for (Map.Entry<String, Long> entry : result.getAvgRuntimeByAlgorithmNanos().entrySet()) {
                 long nanos = entry.getValue();
@@ -82,7 +81,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("dataset,data_characteristic,total_inversions,bubble_passes,bubble_swaps,quick_sort_pivot_used,pivot_id,pivot_rank,first_partition_left,first_partition_right,pivot_quality\n");
 
-        // Save the extra dataset analysis used to explain the sorting timings.
         for (DatasetCharacteristicsResult result : results) {
             builder.append(result.getDatasetName()).append(",")
                     .append(result.getDataCharacteristic()).append(",")
@@ -107,7 +105,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("dataset,list_type,algorithm,row_count,avg_runtime_ns,avg_runtime_ms\n");
 
-        // This supports the Task C explanation of why the chosen data structure matters.
         for (DataStructureComparisonResult result : results) {
             builder.append(result.getDatasetName()).append(",")
                     .append(result.getListType()).append(",")
@@ -127,7 +124,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("dataset,algorithm,row_count,comparisons,swaps,writes,passes,partitions,merges,recursive_calls\n");
 
-        // These counts help explain the measured time complexity of each sorting algorithm.
         for (SortingOperationCountResult result : results) {
             builder.append(result.getDatasetName()).append(",")
                     .append(result.getAlgorithmName()).append(",")
@@ -148,7 +144,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("dataset,rank,location_id,priority_score\n");
 
-        // Save the top selected locations so they can be copied into the report.
         for (Map.Entry<String, List<CandidateLocation>> entry : selectedByDataset.entrySet()) {
             String dataset = entry.getKey();
             List<CandidateLocation> candidates = entry.getValue();
@@ -168,7 +163,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("case,start,destination,waypoints_in_order,reachable,total_cost,path\n");
 
-        // Save all required Task B cases in one table.
         for (GraphQueryResult result : graphResults) {
             String waypoints = result.getWaypointsInOrder().isEmpty() ? "NONE" : String.join(" -> ", result.getWaypointsInOrder());
             String cost = result.isReachable() ? String.valueOf(result.getTotalCost()) : "INF";
@@ -191,7 +185,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("algorithm,case,start,destination,waypoints_in_order,reachable,total_cost,runtime_ns,runtime_ms,path\n");
 
-        // Save the comparison between Dijkstra, bidirectional Dijkstra, and A*.
         for (GraphAlgorithmComparisonResult comparisonResult : graphComparisonResults) {
             GraphQueryResult result = comparisonResult.getQueryResult();
             String waypoints = result.getWaypointsInOrder().isEmpty() ? "NONE" : String.join(" -> ", result.getWaypointsInOrder());
@@ -218,7 +211,6 @@ public class ExperimentOutputWriter {
         StringBuilder builder = new StringBuilder();
         builder.append("algorithm,case,segment_count,reachable,total_cost,queue_polls,stale_polls,queue_pushes,edge_checks,successful_relaxations,visited_nodes\n");
 
-        // Queue operations and edge checks are the main work in Dijkstra-style graph search.
         for (GraphOperationCountResult result : results) {
             String cost = result.isReachable() ? String.valueOf(result.getTotalCost()) : "INF";
             builder.append(result.getAlgorithmName()).append(",")

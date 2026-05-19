@@ -38,7 +38,6 @@ public final class DatasetProfile {
     public static DatasetProfile from(List<CandidateLocation> candidates) {
         Map<Integer, Integer> scoreCounts = new HashMap<>();
 
-        // Count priority scores to see whether many locations have tied scores.
         for (CandidateLocation candidate : candidates) {
             scoreCounts.put(candidate.getPriorityScore(), scoreCounts.getOrDefault(candidate.getPriorityScore(), 0) + 1);
         }
@@ -51,7 +50,6 @@ public final class DatasetProfile {
 
         boolean sorted = true;
 
-        // Check whether the original file already follows the required ranking rule.
         for (int i = 0; i < candidates.size() - 1; i++) {
             CandidateLocation current = candidates.get(i);
             CandidateLocation next = candidates.get(i + 1);

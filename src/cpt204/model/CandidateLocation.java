@@ -7,7 +7,6 @@ public final class CandidateLocation {
     public static final Comparator<CandidateLocation> RANKING_RULE = new Comparator<CandidateLocation>() {
         @Override
         public int compare(CandidateLocation first, CandidateLocation second) {
-            // Higher score comes first. If scores are equal, smaller location id comes first.
             if (first.priorityScore != second.priorityScore) {
                 return second.priorityScore - first.priorityScore;
             }

@@ -28,7 +28,6 @@ public class SortingService {
             List<CandidateLocation> currentSortedResult = null;
 
             for (int run = 0; run < benchmarkRuns; run++) {
-                // Each algorithm sorts a fresh copy, so the comparison is fair.
                 List<CandidateLocation> candidatesForThisRun = new ArrayList<>(originalCandidates);
                 long start = System.nanoTime();
                 strategy.sort(candidatesForThisRun, CandidateLocation.RANKING_RULE);

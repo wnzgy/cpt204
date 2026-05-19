@@ -13,7 +13,6 @@ public class GraphAlgorithmComparisonService {
         for (ShortestPathSolver solver : solvers) {
             GraphQueryService queryService = new GraphQueryService(solver);
             for (GraphCaseDefinition caseDefinition : caseDefinitions) {
-                // Time the full case, including any required waypoints.
                 long startTime = System.nanoTime();
                 GraphQueryResult queryResult = queryService.queryWithOrderedWaypoints(
                         caseDefinition.getCaseName(),

@@ -30,7 +30,6 @@ public class WeightedGraph {
     private int undirectedEdgeCount = 0;
 
     public void addUndirectedEdge(String from, String to, int weight) {
-        // The graph is undirected, so one CSV edge is stored in both directions.
         addDirectedEdge(from, to, weight);
         addDirectedEdge(to, from, weight);
         undirectedEdgeCount++;
@@ -38,7 +37,6 @@ public class WeightedGraph {
 
     private void addDirectedEdge(String from, String to, int weight) {
         adjacency.computeIfAbsent(from, k -> new ArrayList<>()).add(new Edge(to, weight));
-        // Make sure the destination node exists even if it has no outgoing edge yet.
         adjacency.computeIfAbsent(to, k -> new ArrayList<>());
     }
 
@@ -55,5 +53,14 @@ public class WeightedGraph {
 
     public int getUndirectedEdgeCount() {
         return undirectedEdgeCount;
+    }
+
+    public int edgeWeight(String from, String to) {
+        for (Edge edge : neighborsOf(from)) {
+            if (edge.getTo().equals(to)) {
+                return edge.getWeight();
+            }
+        }
+        return -1;
     }
 }

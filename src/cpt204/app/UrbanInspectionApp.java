@@ -1,7 +1,6 @@
 package cpt204.app;
 
-import cpt204.graph.AStarSolver;
-import cpt204.graph.BidirectionalDijkstraSolver;
+import cpt204.graph.BfsSolver;
 import cpt204.graph.DijkstraSolver;
 import cpt204.graph.GraphAlgorithmComparisonResult;
 import cpt204.graph.GraphAlgorithmComparisonService;
@@ -12,6 +11,7 @@ import cpt204.graph.GraphQueryResult;
 import cpt204.graph.GraphQueryService;
 import cpt204.graph.ShortestPathSolver;
 import cpt204.graph.WeightedGraph;
+import cpt204.io.BorderedTable;
 import cpt204.io.CsvDataLoader;
 import cpt204.model.CandidateLocation;
 import cpt204.sort.BubbleSortStrategy;
@@ -23,29 +23,28 @@ import cpt204.sort.DatasetSortingResult;
 import cpt204.sort.MergeSortStrategy;
 import cpt204.sort.QuickSortStrategy;
 import cpt204.sort.SortStrategy;
-import cpt204.sort.SortingService;
 import cpt204.sort.SortingOperationCountResult;
 import cpt204.sort.SortingOperationCountService;
-import cpt204.visualizer.GraphOutputVisualizer;
-import cpt204.visualizer.SortingOutputVisualizer;
+import cpt204.sort.SortingService;
+import cpt204.chart.GraphOutputVisualizer;
+import cpt204.chart.SortingOutputVisualizer;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class UrbanInspectionApp {
     private static final Path DATA_DIR = Paths.get("Group Project Datasets");
-    private static final Path OUTPUT_ROOT_DIR = Paths.get("outputs");
+    private static final Path OUTPUT_DIR = Paths.get("outputs");
     private static final int TOP_N = 10;
-    private static final int BENCHMARK_RUNS = 3;
+    private static final int BENCHMARK_RUNS = 5;
 
     public static void main(String[] args) throws IOException {
         CsvDataLoader loader = new CsvDataLoader();
@@ -55,7 +54,6 @@ public class UrbanInspectionApp {
         datasets.put("Dataset B", loader.readCandidates(DATA_DIR.resolve("candidates_B.csv")));
         datasets.put("Dataset C", loader.readCandidates(DATA_DIR.resolve("candidates_C.csv")));
 
-        // Three sorting methods required by Task A.
         List<SortStrategy> strategies = Arrays.asList(
                 new BubbleSortStrategy(),
                 new QuickSortStrategy(),
@@ -82,8 +80,8 @@ public class UrbanInspectionApp {
         }
 
         WeightedGraph graph = loader.readUndirectedWeightedGraph(DATA_DIR.resolve("paths.csv"));
-        DijkstraSolver solver = new DijkstraSolver(graph);
-        GraphQueryService graphQueryService = new GraphQueryService(solver);
+        DijkstraSolver dijkstraSolver = new DijkstraSolver(graph);
+        GraphQueryService graphQueryService = new GraphQueryService(dijkstraSolver);
 
         List<CandidateLocation> topA = selectedByDataset.get("Dataset A");
         List<CandidateLocation> topB = selectedByDataset.get("Dataset B");
@@ -96,7 +94,6 @@ public class UrbanInspectionApp {
         String c1 = topC.get(0).getLocationId();
         String c5 = topC.get(4).getLocationId();
 
-        // The four graph cases are exactly the cases listed in Task B.
         List<GraphCaseDefinition> graphCaseDefinitions = new ArrayList<>();
         graphCaseDefinitions.add(new GraphCaseDefinition("Case 1", a1, a1, Collections.<String>emptyList()));
         graphCaseDefinitions.add(new GraphCaseDefinition("Case 2", a1, a10, Collections.<String>emptyList()));
@@ -115,8 +112,7 @@ public class UrbanInspectionApp {
 
         List<ShortestPathSolver> graphSolvers = Arrays.asList(
                 new DijkstraSolver(graph),
-                new BidirectionalDijkstraSolver(graph),
-                new AStarSolver(graph)
+                new BfsSolver(graph)
         );
         GraphAlgorithmComparisonService comparisonService = new GraphAlgorithmComparisonService();
         List<GraphAlgorithmComparisonResult> graphComparisonResults =
@@ -134,10 +130,10 @@ public class UrbanInspectionApp {
         printGraphAlgorithmComparison(graphComparisonResults);
         printGraphOperationCounts(graphOperationCountResults);
 
+        Files.createDirectories(OUTPUT_DIR);
         ExperimentOutputWriter outputWriter = new ExperimentOutputWriter();
-        Path outputDir = createOutputDirForThisRun();
         outputWriter.writeAll(
-                outputDir,
+                OUTPUT_DIR,
                 sortingResults,
                 selectedByDataset,
                 graphResults,
@@ -148,157 +144,192 @@ public class UrbanInspectionApp {
                 graphOperationCountResults
         );
 
-        GraphOutputVisualizer visualizer = new GraphOutputVisualizer();
-        visualizer.writePathSummary(outputDir.resolve("graph_path_visualization.png"), graphResults);
-        visualizer.writeAlgorithmComparison(outputDir.resolve("graph_algorithm_comparison.png"), graphComparisonResults);
+        GraphOutputVisualizer graphVisualizer = new GraphOutputVisualizer();
+        graphVisualizer.writePathSummary(OUTPUT_DIR.resolve("graph_path_visualization.png"), graphResults);
+        graphVisualizer.writeAlgorithmComparison(OUTPUT_DIR.resolve("graph_algorithm_comparison.png"), graphComparisonResults);
 
         SortingOutputVisualizer sortingVisualizer = new SortingOutputVisualizer();
-        sortingVisualizer.writeSortingRuntimeChart(outputDir.resolve("sorting_runtime_chart.png"), sortingResults);
-        sortingVisualizer.writeDatasetCharacteristicsChart(outputDir.resolve("dataset_characteristics_chart.png"), datasetCharacteristicsResults);
-        sortingVisualizer.writeDataStructureChart(outputDir.resolve("data_structure_comparison_chart.png"), dataStructureComparisonResults);
+        sortingVisualizer.writeSortingRuntimeChart(OUTPUT_DIR.resolve("sorting_runtime_chart.png"), sortingResults);
+        sortingVisualizer.writeDatasetCharacteristicsChart(
+                OUTPUT_DIR.resolve("dataset_characteristics_chart.png"),
+                datasetCharacteristicsResults
+        );
+        sortingVisualizer.writeDataStructureChart(
+                OUTPUT_DIR.resolve("data_structure_comparison_chart.png"),
+                dataStructureComparisonResults
+        );
 
         System.out.println();
-        System.out.println("All experiment outputs have been written to: " + outputDir.toAbsolutePath());
-    }
-
-    private static Path createOutputDirForThisRun() {
-        String timeText = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date());
-        return OUTPUT_ROOT_DIR.resolve("run_" + timeText);
+        System.out.println("Written to " + OUTPUT_DIR.toAbsolutePath());
     }
 
     private static void printSortingSummary(List<DatasetSortingResult> sortingResults) {
-        System.out.println("========== Task A: Sorting Benchmark ==========");
+        System.out.println("Task A: Sorting Benchmark");
         for (DatasetSortingResult result : sortingResults) {
-            System.out.println(result.getDatasetName() + ":");
-            System.out.println("  profile -> totalRows=" + result.getProfile().getTotalRows()
-                    + ", uniqueScores=" + result.getProfile().getUniqueScoreCount()
-                    + ", tieScoreGroups=" + result.getProfile().getTieScoreGroupCount()
-                    + ", alreadySortedByRule=" + result.getProfile().isAlreadySortedByRankingRule());
+            System.out.println(result.getDatasetName());
+            BorderedTable profile = new BorderedTable("totalRows", "uniqueScores", "tieGroups", "sortedByRule");
+            profile.addRow(
+                    String.valueOf(result.getProfile().getTotalRows()),
+                    String.valueOf(result.getProfile().getUniqueScoreCount()),
+                    String.valueOf(result.getProfile().getTieScoreGroupCount()),
+                    String.valueOf(result.getProfile().isAlreadySortedByRankingRule())
+            );
+            profile.printToConsole();
+
+            BorderedTable timings = new BorderedTable("Algorithm", "Avg_ns", "Avg_ms");
             for (Map.Entry<String, Long> runtimeEntry : result.getAvgRuntimeByAlgorithmNanos().entrySet()) {
                 long nanos = runtimeEntry.getValue();
-                double millis = nanos / 1_000_000.0;
-                System.out.printf("  %-11s avg = %d ns (%.6f ms)%n", runtimeEntry.getKey(), nanos, millis);
+                timings.addRow(
+                        runtimeEntry.getKey(),
+                        String.valueOf(nanos),
+                        String.format("%.6f", nanos / 1_000_000.0)
+                );
             }
+            timings.printToConsole();
             System.out.println();
         }
     }
 
     private static void printDatasetCharacteristics(List<DatasetCharacteristicsResult> results) {
-        System.out.println("========== Task A: Dataset Characteristics ==========");
+        System.out.println("Task A: Dataset Characteristics");
+        BorderedTable table = new BorderedTable(
+                "Dataset", "Characteristic", "Inversions", "BubblePasses", "BubbleSwaps",
+                "PivotId", "PartitionLeft", "PartitionRight", "PivotQuality"
+        );
         for (DatasetCharacteristicsResult result : results) {
-            System.out.println(result.getDatasetName() + ":");
-            System.out.println("  characteristic=" + result.getDataCharacteristic());
-            System.out.println("  inversions=" + result.getTotalInversions()
-                    + ", bubblePasses=" + result.getBubblePasses()
-                    + ", bubbleSwaps=" + result.getBubbleSwaps());
-            System.out.println("  quickSortLastPivot=" + result.getPivotId()
-                    + ", firstPartition=" + result.getFirstPartitionLeft()
-                    + " left / " + result.getFirstPartitionRight()
-                    + " right, quality=" + result.getPivotQuality());
-            System.out.println();
+            table.addRow(
+                    result.getDatasetName(),
+                    result.getDataCharacteristic(),
+                    String.valueOf(result.getTotalInversions()),
+                    String.valueOf(result.getBubblePasses()),
+                    String.valueOf(result.getBubbleSwaps()),
+                    result.getPivotId(),
+                    String.valueOf(result.getFirstPartitionLeft()),
+                    String.valueOf(result.getFirstPartitionRight()),
+                    result.getPivotQuality()
+            );
         }
+        table.printToConsole();
+        System.out.println();
     }
 
     private static void printDataStructureComparison(List<DataStructureComparisonResult> results) {
-        System.out.println("========== Task C: Data Structure Comparison ==========");
+        System.out.println("Task C: Data Structure Comparison");
+        BorderedTable table = new BorderedTable("Dataset", "ListType", "Rows", "Algorithm", "Avg_ns", "Avg_ms");
         for (DataStructureComparisonResult result : results) {
-            System.out.printf(
-                    "%s | %s | rows=%d | %s avg=%d ns (%.6f ms)%n",
+            table.addRow(
                     result.getDatasetName(),
                     result.getListType(),
-                    result.getRowCount(),
+                    String.valueOf(result.getRowCount()),
                     result.getAlgorithmName(),
-                    result.getAvgRuntimeNanos(),
-                    result.getAvgRuntimeMillis()
+                    String.valueOf(result.getAvgRuntimeNanos()),
+                    String.format("%.6f", result.getAvgRuntimeMillis())
             );
         }
+        table.printToConsole();
         System.out.println();
     }
 
     private static void printSortingOperationCounts(List<SortingOperationCountResult> results) {
-        System.out.println("========== Task A: Sorting Operation Counts ==========");
+        System.out.println("Task A: Sorting Operation Counts");
+        BorderedTable table = new BorderedTable(
+                "Dataset", "Algorithm", "Comparisons", "Swaps", "Writes", "Passes", "Partitions", "Merges"
+        );
         for (SortingOperationCountResult result : results) {
-            System.out.printf(
-                    "%s | %s | comparisons=%d | swaps=%d | writes=%d | passes=%d | partitions=%d | merges=%d%n",
+            table.addRow(
                     result.getDatasetName(),
                     result.getAlgorithmName(),
-                    result.getComparisons(),
-                    result.getSwaps(),
-                    result.getWrites(),
-                    result.getPasses(),
-                    result.getPartitions(),
-                    result.getMerges()
+                    String.valueOf(result.getComparisons()),
+                    String.valueOf(result.getSwaps()),
+                    String.valueOf(result.getWrites()),
+                    String.valueOf(result.getPasses()),
+                    String.valueOf(result.getPartitions()),
+                    String.valueOf(result.getMerges())
             );
         }
+        table.printToConsole();
         System.out.println();
     }
 
     private static void printSelectedLocations(Map<String, List<CandidateLocation>> selectedByDataset) {
-        System.out.println("========== Top 10 Selected Locations ==========");
+        System.out.println("Top 10 Selected Locations");
         for (Map.Entry<String, List<CandidateLocation>> entry : selectedByDataset.entrySet()) {
-            System.out.println(entry.getKey() + ":");
+            System.out.println(entry.getKey());
+            BorderedTable table = new BorderedTable("Rank", "Location", "Score");
             List<CandidateLocation> selected = entry.getValue();
             for (int i = 0; i < selected.size(); i++) {
                 CandidateLocation location = selected.get(i);
-                System.out.printf("  #%02d %s (score=%d)%n", i + 1, location.getLocationId(), location.getPriorityScore());
+                table.addRow(
+                        String.format("%02d", i + 1),
+                        location.getLocationId(),
+                        String.valueOf(location.getPriorityScore())
+                );
             }
+            table.printToConsole();
             System.out.println();
         }
     }
 
     private static void printGraphSummary(WeightedGraph graph, List<GraphQueryResult> graphResults) {
-        System.out.println("========== Task B: Graph Queries ==========");
-        System.out.println("Graph summary: nodes=" + graph.nodes().size() + ", undirectedEdges=" + graph.getUndirectedEdgeCount());
+        System.out.println("Task B: Graph Queries");
+        BorderedTable meta = new BorderedTable("Nodes", "UndirectedEdges");
+        meta.addRow(String.valueOf(graph.nodes().size()), String.valueOf(graph.getUndirectedEdgeCount()));
+        meta.printToConsole();
+        System.out.println();
+
         for (GraphQueryResult result : graphResults) {
-            System.out.println(result.getCaseName() + ":");
-            System.out.println("  start=" + result.getStart() + ", destination=" + result.getDestination());
-            if (result.getWaypointsInOrder().isEmpty()) {
-                System.out.println("  waypoints=NONE");
-            } else {
-                System.out.println("  waypoints=" + String.join(" -> ", result.getWaypointsInOrder()));
-            }
-            if (result.isReachable()) {
-                System.out.println("  shortestPath=" + result.formatPath());
-                System.out.println("  totalCost=" + result.getTotalCost());
-            } else {
-                System.out.println("  shortestPath=UNREACHABLE");
-                System.out.println("  totalCost=INF");
-            }
+            System.out.println(result.getCaseName());
+            String waypoints = result.getWaypointsInOrder().isEmpty()
+                    ? "NONE"
+                    : String.join(" -> ", result.getWaypointsInOrder());
+            String path = result.isReachable() ? result.formatPath() : "UNREACHABLE";
+            String cost = result.isReachable() ? String.valueOf(result.getTotalCost()) : "INF";
+            BorderedTable table = new BorderedTable("Start", "Destination", "Waypoints", "Cost", "Path");
+            table.addRow(result.getStart(), result.getDestination(), waypoints, cost, path);
+            table.printToConsole();
             System.out.println();
         }
     }
 
     private static void printGraphAlgorithmComparison(List<GraphAlgorithmComparisonResult> comparisonResults) {
-        System.out.println("========== Task B: Graph Algorithm Comparison ==========");
+        System.out.println("Task B: Algorithm Comparison");
+        BorderedTable table = new BorderedTable("Case", "Algorithm", "Reachable", "Cost", "Hops", "Time_ms", "Path");
         for (GraphAlgorithmComparisonResult comparisonResult : comparisonResults) {
             GraphQueryResult queryResult = comparisonResult.getQueryResult();
             String cost = queryResult.isReachable() ? String.valueOf(queryResult.getTotalCost()) : "INF";
-            System.out.printf(
-                    "%s | %s | cost=%s | runtime=%d ns (%.6f ms)%n",
-                    comparisonResult.getAlgorithmName(),
+            int hops = queryResult.isReachable()
+                    ? Math.max(0, queryResult.getFinalPath().size() - 1)
+                    : -1;
+            table.addRow(
                     queryResult.getCaseName(),
+                    comparisonResult.getAlgorithmName(),
+                    String.valueOf(queryResult.isReachable()),
                     cost,
-                    comparisonResult.getRuntimeNanos(),
-                    comparisonResult.getRuntimeMillis()
+                    String.valueOf(hops),
+                    String.format("%.6f", comparisonResult.getRuntimeMillis()),
+                    queryResult.formatPath()
             );
         }
-        System.out.println("Note: A* uses h=0 because the dataset does not provide node coordinates.");
+        table.printToConsole();
         System.out.println();
     }
 
     private static void printGraphOperationCounts(List<GraphOperationCountResult> results) {
-        System.out.println("========== Task B: Graph Operation Counts ==========");
+        System.out.println("Task B: Graph Operation Counts");
+        BorderedTable table = new BorderedTable(
+                "Case", "Algorithm", "EdgeChecks", "Relaxations", "QueuePolls", "VisitedNodes"
+        );
         for (GraphOperationCountResult result : results) {
-            System.out.printf(
-                    "%s | %s | edgeChecks=%d | relaxations=%d | queuePolls=%d | visitedNodes=%d%n",
-                    result.getAlgorithmName(),
+            table.addRow(
                     result.getCaseName(),
-                    result.getEdgeChecks(),
-                    result.getSuccessfulRelaxations(),
-                    result.getQueuePolls(),
-                    result.getVisitedNodes()
+                    result.getAlgorithmName(),
+                    String.valueOf(result.getEdgeChecks()),
+                    String.valueOf(result.getSuccessfulRelaxations()),
+                    String.valueOf(result.getQueuePolls()),
+                    String.valueOf(result.getVisitedNodes())
             );
         }
+        table.printToConsole();
         System.out.println();
     }
 }

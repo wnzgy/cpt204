@@ -14,7 +14,6 @@ public class BubbleSortStrategy implements SortStrategy {
     public <T> void sort(List<T> data, Comparator<T> comparator) {
         int n = data.size();
 
-        // Repeatedly move the largest remaining element to the back.
         for (int i = 0; i < n - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < n - 1 - i; j++) {
@@ -24,7 +23,6 @@ public class BubbleSortStrategy implements SortStrategy {
                 }
             }
             if (!swapped) {
-                // If no swap happens, the list is already sorted.
                 break;
             }
         }

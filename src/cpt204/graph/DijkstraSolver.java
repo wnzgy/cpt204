@@ -41,7 +41,6 @@ public class DijkstraSolver implements ShortestPathSolver {
         shortestDistance.put(start, 0L);
         waitingNodes.add(new NodeDistance(start, 0L));
 
-        // Dijkstra always expands the not-yet-processed node with the smallest distance.
         while (!waitingNodes.isEmpty()) {
             NodeDistance current = waitingNodes.poll();
             long knownDistance = shortestDistance.getOrDefault(current.getNode(), Long.MAX_VALUE);
@@ -52,7 +51,6 @@ public class DijkstraSolver implements ShortestPathSolver {
                 break;
             }
 
-            // Try to improve the shortest known distance of each neighbor.
             for (WeightedGraph.Edge edge : graph.neighborsOf(current.getNode())) {
                 long newDistance = current.getDistance() + edge.getWeight();
                 long oldDistance = shortestDistance.getOrDefault(edge.getTo(), Long.MAX_VALUE);
@@ -73,7 +71,6 @@ public class DijkstraSolver implements ShortestPathSolver {
     }
 
     private List<String> reconstructPath(Map<String, String> previous, String start, String destination) {
-        // Follow previous nodes backwards, then reverse the result into start-to-end order.
         List<String> reversedPath = new ArrayList<>();
         String node = destination;
         reversedPath.add(node);

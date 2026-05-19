@@ -1,13 +1,9 @@
 algorithm,case,segment_count,reachable,total_cost,queue_polls,stale_polls,queue_pushes,edge_checks,successful_relaxations,visited_nodes
 Dijkstra,Case 1,1,true,0,0,0,0,0,0,0
-Bidirectional Dijkstra,Case 1,1,true,0,0,0,0,0,0,0
-A* (h=0),Case 1,1,true,0,0,0,0,0,0,0
+BFS,Case 1,1,true,0,0,0,0,0,0,0
 Dijkstra,Case 2,1,true,27,1081,175,1415,4796,1414,906
-Bidirectional Dijkstra,Case 2,1,true,27,70,1,320,410,318,69
-A* (h=0),Case 2,1,true,27,1081,175,1415,4796,1414,906
+BFS,Case 2,1,true,30,721,0,988,3976,0,721
 Dijkstra,Case 3,2,true,39,663,32,1787,3518,1785,631
-Bidirectional Dijkstra,Case 3,2,true,39,68,0,316,382,312,68
-A* (h=0),Case 3,2,true,39,663,32,1787,3518,1785,631
+BFS,Case 3,2,true,52,633,0,1500,3653,0,633
 Dijkstra,Case 4,3,true,48,773,32,2102,4143,2099,741
-Bidirectional Dijkstra,Case 4,3,true,48,90,0,416,502,410,90
-A* (h=0),Case 4,3,true,48,773,32,2102,4143,2099,741
+BFS,Case 4,3,true,66,805,0,1780,4632,0,805

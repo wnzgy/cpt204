@@ -14,7 +14,6 @@ public class CsvDataLoader {
         List<String> lines = Files.readAllLines(csvPath);
         List<CandidateLocation> candidates = new ArrayList<>();
 
-        // Start from line 1 because line 0 is the CSV header.
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i).trim();
             if (line.isEmpty()) {
@@ -32,7 +31,6 @@ public class CsvDataLoader {
         List<String> lines = Files.readAllLines(csvPath);
         WeightedGraph graph = new WeightedGraph();
 
-        // Each row is one road between two locations with a distance.
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i).trim();
             if (line.isEmpty()) {
